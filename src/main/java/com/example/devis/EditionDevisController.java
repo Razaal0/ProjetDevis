@@ -5,7 +5,9 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
 import java.sql.SQLException;
@@ -27,34 +29,22 @@ public class EditionDevisController {
     TextField cherche_devis_date;
     @FXML
     TextField cherche_devis_objet;
+    @FXML
+    ScrollPane Scroll;
+    @FXML
+    GridPane ListeDevis;
 
-    @FXML
-    VBox ListeDevis_num;
-    @FXML
-    VBox ListeDevis_client;
-    @FXML
-    VBox ListeDevis_bien;
-    @FXML
-    VBox ListeDevis_date;
-    @FXML
-    VBox ListeDevis_objet;
-    ListView<VBox> ListeDevis = new ListView<>();
     @FXML
     private ListView<Devis> searchResults = new ListView<>();
 
     public void initialize() {
         ObservableList<Devis> devis = FXCollections.observableArrayList();
         searchResults.setItems(devis);
-
-        ListeDevis.getItems().add(ListeDevis_num);
-        ListeDevis.getItems().add(ListeDevis_client);
-        ListeDevis.getItems().add(ListeDevis_bien);
-        ListeDevis.getItems().add(ListeDevis_date);
-        ListeDevis.getItems().add(ListeDevis_objet);
     }
 
     @FXML
     public void ChercherDevis() throws SQLException {
+        Scroll.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         String NumeroDevis = cherche_devis_num.getText();
         String ClientDevis = cherche_devis_client.getText();
         String BienDevis = cherche_devis_bien.getText();
@@ -62,53 +52,68 @@ public class EditionDevisController {
         String ObjetDevis = cherche_devis_objet.getText();
 //        si NumeroDevis est vide, on cache le vbox
         if (NumeroDevis.isEmpty() && ClientDevis.isEmpty() && BienDevis.isEmpty() && DateDevis.isEmpty() && ObjetDevis.isEmpty()) {
-            for (VBox ld : ListeDevis.getItems()) {
-                ld.setVisible(false);
-            }
+                ListeDevis.setVisible(false);
+                Scroll.setVisible(false);
         } else {
-            for (VBox ld : ListeDevis.getItems()) {
-                ld.setVisible(true);
-            }
-            List<Devis> devis = GetDevisByNum(cherche_devis_num.getText(), cherche_devis_client.getText(), cherche_devis_bien.getText(), cherche_devis_date.getText(), cherche_devis_objet.getText());
+            ListeDevis.setVisible(true);
+            Scroll.setVisible(true);
+            List<Devis> devis = GetDevisByNum(NumeroDevis, ClientDevis, BienDevis, DateDevis, ObjetDevis);
 //            si devis est vide, on affiche dans le vbox "Aucun devis trouvé"
             if (devis.isEmpty()) {
-                clearListeDevis();
+                Scroll.setVisible(false);
+                ListeDevis.getChildren().clear();
                 Result_False.setVisible(true);
                 Result_False.setText("Aucun devis trouvé");
                 Result_False.setStyle("-fx-font-size: 20px;");
             } else {
             Result_False.setVisible(false);
-            clearListeDevis();
+            ListeDevis.getChildren().clear();
             ObservableList<Devis> devisObservable = FXCollections.observableArrayList(devis);
             searchResults.setItems(devisObservable);
-
+            Integer count = 0;
             for (Devis d : devis) {
-                Label num = new Label(d.getDEV_NUMERO());
-                Label client = new Label(d.getCLI_REF());
-                Label bien = new Label(d.getBIE_REF());
-                Label date = new Label(d.getDEV_DATE());
-                Label objet = new Label(d.getDEV_OBJET());
-                ListeDevis_num.getChildren().add(num);
-                ListeDevis_client.getChildren().add(client);
-                ListeDevis_bien.getChildren().add(bien);
-                ListeDevis_date.getChildren().add(date);
-                ListeDevis_objet.getChildren().add(objet);
-            }
-//            adapter la taille du vbox en fonction du nombre de devis, mettre une limite de 10 devis
-            if (devis.size() == 1) {
-                ListeDevis.setPrefHeight(30);
-            } else if (devis.size() > 10) {
-                ListeDevis.setPrefHeight(200);
-            } else {
-                ListeDevis.setPrefHeight(devis.size() * 28);
+                ListeDevis.add(createLabel(d.getDEV_NUMERO(), d.getDEV_NUMERO()), 0, count);
+                ListeDevis.add(createLabel(d.getCLI_REF(), d.getDEV_NUMERO()), 1, count);
+                ListeDevis.add(createLabel(d.getBIE_REF(), d.getDEV_NUMERO()), 2, count);
+                ListeDevis.add(createLabel(d.getDEV_DATE(), d.getDEV_NUMERO()), 3, count);
+                ListeDevis.add(createLabel(d.getDEV_OBJET(), d.getDEV_NUMERO()), 4, count);
+                count++;
             }
             }
         }
     }
 
-    private void clearListeDevis() {
-        for (VBox ld : ListeDevis.getItems()) {
-            ld.getChildren().clear();
-        }
+    private Label createLabel(String text, String id) {
+        Label label = new Label(text);
+        label.setStyle("-fx-font-size: 15px;-fx-background-color: #ffffff;");
+        label.setMinWidth(179);
+        label.setPrefWidth(179);
+        label.setAlignment(javafx.geometry.Pos.CENTER);
+        label.setId(id);
+//        quand on passe la souris sur le label, on change la couleur de tous les label qui on cette id
+        label.setOnMouseEntered(event -> {
+            for (javafx.scene.Node node : ListeDevis.getChildren()) {
+                if (node.getId() != null && node.getId().equals(id)) {
+                    node.setStyle("-fx-background-color: #e6e6e6;-fx-font-size: 16px;");
+//                    mettre le curseur en forme de main
+                    node.setCursor(javafx.scene.Cursor.HAND);
+                }
+            }
+        });
+//        quand on sort la souris du label, on change la couleur de tous les label qui on cette id
+        label.setOnMouseExited(event -> {
+            for (javafx.scene.Node node : ListeDevis.getChildren()) {
+                if (node.getId() != null && node.getId().equals(id)) {
+                node.setStyle("-fx-font-size: 15px;-fx-background-color: #ffffff;");
+//                mettre le curseur en forme normal
+                node.setCursor(javafx.scene.Cursor.DEFAULT);
+                }
+            }
+        });
+//        mettre en place un listener sur le label
+        label.setOnMouseClicked(event -> {
+            System.out.println("Label clicked: " + label.getId());
+        });
+        return label;
     }
 }
