@@ -1,0 +1,188 @@
+DROP DATABASE IF EXISTS artizan;
+
+CREATE DATABASE IF NOT EXISTS artizan;
+USE artizan;
+# -----------------------------------------------------------------------------
+#       TABLE : DEVIS
+# -----------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS DEVIS
+ (
+   DEV_NUMERO INT NOT NULL  ,
+   CLI_REF VARCHAR(128) NOT NULL  ,
+   BIE_REF VARCHAR(128) NOT NULL  ,
+   DEV_DATE DATE NULL  ,
+   DEV_OBJET VARCHAR(128) NULL  
+   , PRIMARY KEY (DEV_NUMERO) 
+ ) 
+ comment = "";
+
+# -----------------------------------------------------------------------------
+#       INDEX DE LA TABLE DEVIS
+# -----------------------------------------------------------------------------
+
+
+CREATE  INDEX I_FK_DEVIS_CLIENT
+     ON DEVIS (CLI_REF ASC);
+
+CREATE  INDEX I_FK_DEVIS_BIEN
+     ON DEVIS (BIE_REF ASC);
+
+# -----------------------------------------------------------------------------
+#       TABLE : BIEN
+# -----------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS BIEN
+ (
+   BIE_REF VARCHAR(128) NOT NULL  ,
+   CLI_REF VARCHAR(128) NOT NULL  ,
+   BIE_DENOMINATION VARCHAR(128) NULL  ,
+   BIE_DESCRIPTION VARCHAR(128) NULL  ,
+   BIE_ADRUE VARCHAR(128) NULL  ,
+   BIE_ADBATIMENT VARCHAR(128) NULL  ,
+   BIE_CP INT NULL  ,
+   BIE_VILLE VARCHAR(128) NULL  
+   , PRIMARY KEY (BIE_REF) 
+ ) 
+ comment = "";
+
+# -----------------------------------------------------------------------------
+#       INDEX DE LA TABLE BIEN
+# -----------------------------------------------------------------------------
+
+
+CREATE  INDEX I_FK_BIEN_CLIENT
+     ON BIEN (CLI_REF ASC);
+
+# -----------------------------------------------------------------------------
+#       TABLE : CLIENT
+# -----------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS CLIENT
+ (
+   CLI_REF VARCHAR(128) NOT NULL  ,
+   CLI_ADRUE VARCHAR(128) NULL  ,
+   CLI_ADBATIMENT VARCHAR(128) NULL  ,
+   CLI_CP INT NULL  ,
+   CLI_VILLE VARCHAR(128) NULL  ,
+   CLI_MAIL VARCHAR(128) NULL  
+   , PRIMARY KEY (CLI_REF) 
+ ) 
+ comment = "";
+
+# -----------------------------------------------------------------------------
+#       TABLE : ENTREPRISE
+# -----------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS ENTREPRISE
+ (
+   CLI_REF VARCHAR(128) NOT NULL  ,
+   ENT_RAISONSOCIALE VARCHAR(128) NULL  ,
+   ENT_NOMCONTACT VARCHAR(128) NULL  ,
+   ENT_TELCONTACT INT NULL  ,
+   ENT_MAILCONTACT VARCHAR(128) NULL  ,
+   CLI_ADRUE VARCHAR(128) NULL  ,
+   CLI_ADBATIMENT VARCHAR(128) NULL  ,
+   CLI_CP VARCHAR(128) NULL  ,
+   CLI_VILLE VARCHAR(128) NULL  ,
+   CLI_MAIL VARCHAR(128) NULL  
+   , PRIMARY KEY (CLI_REF) 
+ ) 
+ comment = "";
+
+# -----------------------------------------------------------------------------
+#       TABLE : POSTE
+# -----------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS POSTE
+ (
+   POS_ID INT NOT NULL  ,
+   POS_LIBELLE VARCHAR(128) NULL  ,
+   POS_TOTAL INT NULL  ,
+   POS_PUHT INT NULL  
+   , PRIMARY KEY (POS_ID) 
+ ) 
+ comment = "";
+
+# -----------------------------------------------------------------------------
+#       TABLE : PARTICULIER
+# -----------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS PARTICULIER
+ (
+   CLI_REF VARCHAR(128) NOT NULL  ,
+   PAR_CIVILITE VARCHAR(128) NULL  ,
+   PAR_NOM VARCHAR(128) NULL  ,
+   CLI_ADRUE VARCHAR(128) NULL  ,
+   CLI_ADBATIMENT VARCHAR(128) NULL  ,
+   CLI_CP INT NULL  ,
+   CLI_VILLE VARCHAR(128) NULL  ,
+   CLI_MAIL VARCHAR(128) NULL  
+   , PRIMARY KEY (CLI_REF) 
+ ) 
+ comment = "";
+
+# -----------------------------------------------------------------------------
+#       TABLE : QUANTITE
+# -----------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS QUANTITE
+ (
+   DEV_NUMERO INT NOT NULL  ,
+   POS_ID INT NOT NULL  ,
+   QUANTITE INT NULL  
+   , PRIMARY KEY (DEV_NUMERO,POS_ID) 
+ ) 
+ comment = "";
+
+# -----------------------------------------------------------------------------
+#       INDEX DE LA TABLE QUANTITE
+# -----------------------------------------------------------------------------
+
+
+CREATE  INDEX I_FK_QUANTITE_DEVIS
+     ON QUANTITE (DEV_NUMERO ASC);
+
+CREATE  INDEX I_FK_QUANTITE_POSTE
+     ON QUANTITE (POS_ID ASC);
+
+
+# -----------------------------------------------------------------------------
+#       CREATION DES REFERENCES DE TABLE
+# -----------------------------------------------------------------------------
+
+
+ALTER TABLE DEVIS 
+  ADD FOREIGN KEY FK_DEVIS_CLIENT (CLI_REF)
+      REFERENCES CLIENT (CLI_REF) ;
+
+
+ALTER TABLE DEVIS 
+  ADD FOREIGN KEY FK_DEVIS_BIEN (BIE_REF)
+      REFERENCES BIEN (BIE_REF) ;
+
+
+ALTER TABLE BIEN 
+  ADD FOREIGN KEY FK_BIEN_CLIENT (CLI_REF)
+      REFERENCES CLIENT (CLI_REF) ;
+
+
+ALTER TABLE ENTREPRISE 
+  ADD FOREIGN KEY FK_ENTREPRISE_CLIENT (CLI_REF)
+      REFERENCES CLIENT (CLI_REF) ;
+
+
+ALTER TABLE PARTICULIER 
+  ADD FOREIGN KEY FK_PARTICULIER_CLIENT (CLI_REF)
+      REFERENCES CLIENT (CLI_REF) ;
+
+
+ALTER TABLE QUANTITE 
+  ADD FOREIGN KEY FK_QUANTITE_DEVIS (DEV_NUMERO)
+      REFERENCES DEVIS (DEV_NUMERO) ;
+
+
+ALTER TABLE QUANTITE 
+  ADD FOREIGN KEY FK_QUANTITE_POSTE (POS_ID)
+      REFERENCES POSTE (POS_ID) ;
+
