@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="817.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextField layoutX="207.0" layoutY="19.0" prefHeight="23.0" prefWidth="140.0" promptText="Entrer le text" AnchorPane.leftAnchor="207.0" AnchorPane.topAnchor="19.0" />
+      <Button blendMode="DIFFERENCE" layoutX="347.0" layoutY="19.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="47.0" text="OK">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Button>
+      <ButtonBar layoutX="572.0" layoutY="346.0" prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="45.0">
+        <buttons>
+          <Button blendMode="DIFFERENCE" mnemonicParsing="false" text="Annuler" />
+            <Button blendMode="DIFFERENCE" mnemonicParsing="false" text="Enregister" textFill="#05fc4f" />
+        </buttons>
+      </ButtonBar>
+      <Label layoutX="59.0" layoutY="159.0" text="NOM" AnchorPane.bottomAnchor="224.0" AnchorPane.leftAnchor="59.0" AnchorPane.rightAnchor="729.0" AnchorPane.topAnchor="159.0" />
+      <Label layoutX="308.0" layoutY="159.0" text="PRENOM" AnchorPane.bottomAnchor="224.0" AnchorPane.leftAnchor="308.0" AnchorPane.rightAnchor="460.0" AnchorPane.topAnchor="159.0" />
+      <Button layoutX="207.0" layoutY="65.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" text="NOUVEAU" textAlignment="CENTER" AnchorPane.leftAnchor="207.0" AnchorPane.topAnchor="65.0">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Button>
+      <Label layoutX="65.0" layoutY="267.0" text="Si entreprise :" AnchorPane.leftAnchor="65.0" AnchorPane.topAnchor="267.0" />
+      <Label layoutX="63.0" layoutY="288.0" text="RAISON SOCIALE" />
+      <Label layoutX="308.0" layoutY="267.0" text="SIRET," AnchorPane.bottomAnchor="116.0" />
+      <TextField layoutX="99.0" layoutY="155.0" AnchorPane.leftAnchor="99.0" AnchorPane.topAnchor="155.0" />
+      <TextField layoutX="363.0" layoutY="155.0" AnchorPane.leftAnchor="363.0" AnchorPane.topAnchor="155.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e4b430" height="40.0" layoutX="7.0" layoutY="11.0" stroke="TRANSPARENT" strokeType="INSIDE" width="186.0" />
+      <Text fill="#0a0a0a" layoutX="77.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CLIENT" AnchorPane.bottomAnchor="359.486328125" AnchorPane.leftAnchor="77.0" AnchorPane.rightAnchor="692.955078125" AnchorPane.topAnchor="21.892578125">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="409.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Si Client selectionné, afficher les informations le concernant pour modification éventuelle" wrappingWidth="394.943359375" AnchorPane.bottomAnchor="353.490234375" AnchorPane.leftAnchor="409.0" AnchorPane.rightAnchor="13.056640625" AnchorPane.topAnchor="33.208984375">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Text>
+      <Label layoutX="100.0" layoutY="192.0" text="Adresse," />
+      <Label layoutX="100.0" layoutY="209.0" text="Mail" />
+      <Label layoutX="100.0" layoutY="226.0" text="Téléphone" />
+      <Label layoutX="100.0" layoutY="242.0" text="...Cf modele de classe" />
+   </children>
+</AnchorPane>
