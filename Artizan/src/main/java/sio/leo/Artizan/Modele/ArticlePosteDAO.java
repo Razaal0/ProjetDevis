@@ -23,6 +23,5 @@ public class ArticlePosteDAO {
         ResultSet rs = stmt.executeQuery(rqt);
 
         return rs;
-    }
-    
+    }   
 }
