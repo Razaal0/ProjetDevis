@@ -1,0 +1,6 @@
+delimiter $
+Create procedure getInsertDevis(IN article varchar(30), quantite int, unite int, PUHT int, TxTVA int, TTC int)
+Begin 
+	Insert into devis(article, quantite, unite, PUHT, TxTVA, TTC)
+    VALUES(article, quantite, unite, PUHT, TxTVA, TTC);
+END
