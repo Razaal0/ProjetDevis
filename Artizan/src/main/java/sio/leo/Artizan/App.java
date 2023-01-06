@@ -45,15 +45,30 @@ public class App extends Application {
         this.primaryStage.setTitle("Application ");
         Scene scene = new Scene(loadFXML("ArticlePost"), 640, 480);
         primaryStage.setScene(scene);
+        showPersonOverview();
         primaryStage.show();
     }
     static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
+
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
+
+    public void showPersonOverview() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(App.class.getResource("ArticlePost.fxml"));
+            AnchorPane personOverview = (AnchorPane) loader.load();
+            ArticleController controller = loader.getController();
+            controller.setApp(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
         launch();
     }

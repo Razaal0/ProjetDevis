@@ -29,6 +29,7 @@ public class Poste {
         this.Poste_pos_PUHT =new SimpleIntegerProperty(Poste_pos_puHT);
     }
 
+
     //Attributes Association
     //Operations
     public int getPoste_pos_id() {

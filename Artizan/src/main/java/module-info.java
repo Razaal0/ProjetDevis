@@ -1,4 +1,4 @@
-module sio.leo.mavenproject1 {
+module sio.leo.Artizan {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.base;

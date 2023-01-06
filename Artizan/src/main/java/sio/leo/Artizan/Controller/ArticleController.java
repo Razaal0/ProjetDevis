@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import sio.leo.Artizan.App;
 import sio.leo.Artizan.Modele.Poste;
 
 /**
@@ -27,11 +28,14 @@ public class ArticleController implements Initializable {
     @FXML
     private TableColumn<Poste, String> PosteLibelleColonne;
     @FXML   
-    private TableColumn<Poste, String> PostePUHTColonne;
+    private TableColumn<Poste, Integer> PostePUHTColonne;
     @FXML
-    private TableColumn<Poste, String> PosteTotalColonne;
+    private TableColumn<Poste, Integer> PosteTotalColonne;
+    
+    private App app;
 
-
+    public ArticleController(){
+    }
     /**
      * Initializes the controller class.
      * @param url
@@ -41,11 +45,16 @@ public class ArticleController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         PosteIdColonne.setCellValueFactory(cellData -> cellData.getValue().getPosteID_Property().asObject());
         PosteLibelleColonne.setCellValueFactory(cellData -> cellData.getValue().getPosteLibelle_Property());
-        PostePUHTColonne.setCellValueFactory(cellData -> cellData.getValue().getPosteTotal_Property().asString());
-        PosteTotalColonne.setCellValueFactory(cellData -> cellData.getValue().getPostePUHT_Property().asString());
+        PostePUHTColonne.setCellValueFactory(cellData -> cellData.getValue().getPosteTotal_Property().asObject());
+        PosteTotalColonne.setCellValueFactory(cellData -> cellData.getValue().getPostePUHT_Property().asObject());
         // TODO
+        showPoste(null);
         TablePoste.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> showPoste(newValue));
     }   
+    public void setApp(App app){
+       this.app = app;
+       TablePoste.setItems(app.getTabledata());
+    }
     private void showPoste(Poste leposte) {
         if (leposte != null){
             PosteIdColonne.setText(Integer.toString(leposte.getPoste_pos_id()));
@@ -57,11 +66,7 @@ public class ArticleController implements Initializable {
             PosteLibelleColonne.setText("");
             PostePUHTColonne.setText("");
             PosteTotalColonne.setText("");
-        }
-        
-        
+        }   
     }
-    
-    
-    
+  
 }

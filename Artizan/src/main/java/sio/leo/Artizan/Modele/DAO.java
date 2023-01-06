@@ -11,7 +11,7 @@ import java.util.List;
 public class DAO {
     // connexion à la base de données
     // Page de connexion https://readergen.synology.me/phpmyadmin
-    private static String url = "jdbc:mysql://2.15.160.55:3307/ProjetDevis";
+    private static String url = "jdbc:mysql://readergen.synology.me:3307/ProjetDevis";
     private static String user = "AdminDevis";
     private static String passwd = "bB4/kti-rA";
     static java.sql.Connection connect = getInstance();
