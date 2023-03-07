@@ -47,26 +47,9 @@ public class ArticleController implements Initializable {
         PosteLibelleColonne.setCellValueFactory(cellData -> cellData.getValue().getPosteLibelle_Property());
         PostePUHTColonne.setCellValueFactory(cellData -> cellData.getValue().getPosteTotal_Property().asObject());
         PosteTotalColonne.setCellValueFactory(cellData -> cellData.getValue().getPostePUHT_Property().asObject());
-        // TODO
-        showPoste(null);
-        TablePoste.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> showPoste(newValue));
-    }   
-    public void setApp(App app){
-       this.app = app;
-       TablePoste.setItems(app.getTabledata());
     }
-    private void showPoste(Poste leposte) {
-        if (leposte != null){
-            PosteIdColonne.setText(Integer.toString(leposte.getPoste_pos_id()));
-            PosteLibelleColonne.setText(leposte.getPoste_pos_libelle());
-            PosteTotalColonne.setText(Integer.toString(leposte.getPostePUHT()));
-            PostePUHTColonne.setText(Integer.toString(leposte.getPosteTotal()));          
-        }else{
-            PosteIdColonne.setText("");
-            PosteLibelleColonne.setText("");
-            PostePUHTColonne.setText("");
-            PosteTotalColonne.setText("");
-        }   
+
+    public void setApp(App app) {
+        this.app = app;
+        TablePoste.setItems(app.getTabledata());
     }
-  
-}
