@@ -10,7 +10,7 @@ package sio.leo.model;
  */
 public class DAO {
 
-    private static String url = "jdbc:mysql://2.15.160.55:3307/ProjetDevis";
+    private static String url = "jdbc:mysql://readergen.synology.me:3307/ProjetDevis";
     private static String user = "AdminDevis";
     private static String passwd = "bB4/kti-rA";
     static java.sql.Connection connect = getInstance();
@@ -19,6 +19,7 @@ public class DAO {
         if (connect == null) {
             try {
                 connect = java.sql.DriverManager.getConnection(url, user, passwd);
+                System.out.println("connecté");
             } catch (Exception e) {
                 e.printStackTrace();
             }
