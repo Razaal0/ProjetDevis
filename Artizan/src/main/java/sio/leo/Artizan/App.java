@@ -13,7 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import sio.leo.Artizan.Controller.ArticleController;
+import javafx.stage.Modality;
 import sio.leo.Artizan.Modele.ArticlePosteDAO;
 import sio.leo.Artizan.Modele.DAO;
 import sio.leo.Artizan.Modele.Poste;
@@ -24,10 +24,14 @@ import sio.leo.Artizan.Modele.Poste;
 public class App extends Application {
 
     private Stage primaryStage;
-    private AnchorPane anchorpane;
     private ObservableList<Poste> tabledata = FXCollections.observableArrayList();
-
-    private static Scene scene;
+    
+    @Override
+    public void start(Stage stage) throws IOException {
+        this.primaryStage = stage;
+        this.primaryStage.setTitle("Article/Poste");
+        showPersonOverview();
+    }
     
     public App()throws SQLException{
         ArticlePosteDAO apdao = new ArticlePosteDAO();
@@ -39,36 +43,58 @@ public class App extends Application {
         public ObservableList<Poste> getTabledata(){
         return tabledata;
     }
-    @Override
-    public void start(Stage primaryStage) throws IOException {
-        this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("Application ");
-        Scene scene = new Scene(loadFXML("ArticlePost"), 640, 480);
-        primaryStage.setScene(scene);
-//        showPersonOverview();
-        primaryStage.show();
-    }
-    static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
-    }
 
-    private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-        return fxmlLoader.load();
+    public void showPersonOverview() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(App.class.getResource("ArticlePost.fxml"));
+            AnchorPane anchorpane = (AnchorPane) loader.load();
+            ArticleController controller = loader.getController();
+            controller.setApp(this);
+            Scene scene = new Scene(anchorpane);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-//    public void showPersonOverview() {
-//        try {
-//            FXMLLoader loader = new FXMLLoader();
-//            loader.setLocation(App.class.getResource("ArticlePost.fxml"));
-//            AnchorPane anchorpane = (AnchorPane) loader.load();
-//            ArticleController controller = loader.getController();
-//            controller.setApp(this);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    public Stage getPrimaryStage() {
+        return primaryStage;
+    }
 
+    public boolean showPersonEditDialog(Poste laposte) {
+        try {
+            // Charge le fichier fxml et crée un nouveau stage pour la boîte de dialogue*
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(App.class.getResource("personEditDialog.fxml"));
+            AnchorPane rootEditDialog = (AnchorPane) loader.load();
+
+            // Crée le Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Modification du contact");
+            //MODAL --> fenêtre indépendante
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+
+            Scene scene = new Scene(rootEditDialog);
+            //initOwner() installe (set the owner), le propriétaire de l'application
+            dialogStage.initOwner(primaryStage);
+            dialogStage.setScene(scene);
+
+            // Passe la personne sélectionnée dans l'ObservableList au controller d'édition.
+            PersonEditDialogController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setPerson(laposte);
+
+            // Affiche personEditDialog jusqu'à ce que l'utilisateur la ferme
+            dialogStage.showAndWait();
+
+            return controller.isOkClicked();
+        } catch (IOException e) {
+            e.getMessage();
+            return false;
+        }
+    }
     public static void main(String[] args) {
         launch();
     }
