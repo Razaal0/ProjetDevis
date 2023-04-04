@@ -5,13 +5,9 @@
 package sio.leo.artizan;
 
 import java.sql.SQLException;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -81,6 +77,17 @@ public class ClientController {
             Rue.setText("");
             codepostal.setText("");
             batiment.setText("");
+        }
+    }
+    
+     @FXML
+    private void handleAjouterClient() throws SQLException{
+        Client personneAajouter = new Client();
+        boolean okClicked = App.showPersonEditDialog(personneAajouter);
+        
+        if(okClicked){
+            personTable.getItems().add(personneAajouter);
+            
         }
     }
 }

@@ -23,7 +23,7 @@
       </ButtonBar>
       <Label layoutX="60.0" layoutY="194.0" text="NOM" />
       <Label layoutX="308.0" layoutY="194.0" text="PRENOM" />
-      <Button fx:id="nouveau" layoutX="483.0" layoutY="27.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" text="NOUVEAU" textAlignment="CENTER" AnchorPane.leftAnchor="483.0" AnchorPane.topAnchor="27.0">
+      <Button fx:id="nouveau" layoutX="483.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleAjouterClient" prefHeight="25.0" prefWidth="86.0" text="NOUVEAU" textAlignment="CENTER" AnchorPane.leftAnchor="483.0" AnchorPane.topAnchor="27.0">
          <font>
             <Font size="10.0" />
          </font>
