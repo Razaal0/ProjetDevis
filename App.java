@@ -1,4 +1,4 @@
-package com.leo.artizan;
+package sio.leo.applidevi;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import sio.leo.applidevi.modele.DAOdevis;
 
 /**
  * JavaFX App
@@ -17,7 +18,8 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("Date"), 640, 480);
+        DAOdevis.getConnection();
+        scene = new Scene(loadFXML("FXMLController.fxml"), 700, 500);
         stage.setScene(scene);
         stage.show();
     }
