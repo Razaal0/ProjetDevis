@@ -2,51 +2,43 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.leo.artizan;
+package sio.leo.applidevi.modele;
 
-import static com.leo.artizan.DAOdevis.getConnection;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
  *
- * @author ghezelani
+ * @author FOUGERAS
  */
 public class DAOdevis {
-
-    private static Connection cnx = getConnection();
+        private static Connection cnx = getConnection();
     private static Statement smt = null;
-//    private static ResultSet = null;
-    //Pour exécuter des requêtes
-    
+    private static ResultSet rs = null;
+
     /**
-     * Méthode servant à la connexion à la base de données
-     * @return 
+     * Méthode permettant la connexion à la BDD
+     * @return cnxGsb
      */
-     public static Connection getConnection(){
+    public static Connection getConnection(){
+        String url ="jdbc:mysql://localhost:3307/devistest";
+        String loginBd = "root";
+        String passwd="";
         try {
-          cnx = (Connection) DriverManager.getConnection()
-            "jdbc:mysql://localhost:3307/ProjetDevis",
-            "root",
-            "");
-          // "mysql" après jdbc: et non "mariadb" pour établir la connexion
-            System.out.println(" connx dans DAO " + cnx.getMetaData());
-        }
+            cnx = (Connection) DriverManager.getConnection(url, loginBd, passwd);
+            System.out.println("Connexion réussi");
+        }    
         catch (SQLException e) {
-            System.out.println("SQL Exception :  "+ e.toString());
+            e.printStackTrace();
+            System.out.println("Connexion échoué");
         }
         return cnx;
     }
-     public void getDeconnexion() throws SQLException{
-         cnx.close();
-     }
-//     public ResultSet getTousLesDevis() throws Exception{
-//         rs = cnx.createStatement().executeQuery("SELECT * FROM devis");
-//         return rs;
-//     }
+    public void getDeconnection() throws SQLException{
+        cnx.close();
+    }
 }
-
-

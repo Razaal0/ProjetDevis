@@ -1,32 +1,26 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.leo.artizan;
-
-import java.time.LocalDate;
-import javafx.event.ActionEvent;
+package sio.leo.applidevi;
 import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
-/**
- * FXML Controller class
- *
- * @author ghezelani
- */
 public class DateController {
     @FXML
-    private DatePicker DEV_DATE;
-    
-    public void getDate(ActionEvent event) {
-        
-        LocalDate DEV_DATE = DEV_DATEPicker.getValue();
-        System.out.println(DEV_DATE.toString());
-        
-          }    
+    private Label DateDevis;
+
+    public void initialize() {
+        //Obtenir la date actuelle
+        LocalDate date = LocalDate.now();
+
+        //Formater la date
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String formattedDate = date.format(formatter);
+
+        //Afficher la date dans l'étiquette
+        DateDevis.setText("Date: " + formattedDate);
     }
-          
-        
-//       DatePicker datePicker = new DatePicker();
-//       datePicker . setOnAction ( event -> { LocalDate date = datePicker . getValue (); System . out . println ( " Date sélectionnée : " + date ); }); 
-  
+}
