@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="Anchorpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sio.leo.artizan.ClientController">
+   <children>
+      <TextField fx:id="barre_client" layoutX="287.0" layoutY="27.0" prefHeight="23.0" prefWidth="140.0" promptText="🔍 Entrer le texte" AnchorPane.leftAnchor="287.0" AnchorPane.topAnchor="27.0" />
+      <Button fx:id="ok" blendMode="DIFFERENCE" layoutX="427.0" layoutY="27.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="47.0" text="OK" />
+      <ButtonBar layoutX="572.0" layoutY="346.0" prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="45.0">
+        <buttons>
+          <Button fx:id="Annuler" blendMode="DIFFERENCE" mnemonicParsing="false" text="Annuler" />
+            <Button fx:id="Enregistrer" blendMode="DIFFERENCE" mnemonicParsing="false" text="Enregister" textFill="#05fc4f" />
+        </buttons>
+      </ButtonBar>
+      <Label layoutX="60.0" layoutY="194.0" text="NOM" />
+      <Label layoutX="308.0" layoutY="194.0" text="PRENOM" />
+      <Button fx:id="nouveau" layoutX="483.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleAjouterClient" prefHeight="25.0" prefWidth="86.0" text="NOUVEAU" textAlignment="CENTER" AnchorPane.leftAnchor="483.0" AnchorPane.topAnchor="27.0">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Button>
+      <Label layoutX="52.0" layoutY="423.0" text="Si entreprise :" AnchorPane.leftAnchor="52.0" AnchorPane.topAnchor="423.0" />
+      <Label layoutX="53.0" layoutY="452.0" text="RAISON SOCIALE" />
+      <Label layoutX="261.0" layoutY="452.0" text="SIRET," />
+      <TextField fx:id="nom" layoutX="99.0" layoutY="190.0" AnchorPane.leftAnchor="99.0" AnchorPane.topAnchor="190.0" />
+      <TextField fx:id="prenom" layoutX="363.0" layoutY="190.0" AnchorPane.leftAnchor="363.0" AnchorPane.topAnchor="190.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e38b32" height="46.0" layoutX="7.0" layoutY="11.0" stroke="TRANSPARENT" strokeType="INSIDE" width="193.0" />
+      <Text fill="#0a0a0a" layoutX="80.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CLIENT" AnchorPane.bottomAnchor="557.486328125" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="772.955078125" AnchorPane.topAnchor="23.892578125">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="652.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Si Client selectionné, afficher les informations le concernant pour modification éventuelle" wrappingWidth="206.943359375" AnchorPane.bottomAnchor="535.189453125" AnchorPane.leftAnchor="652.0" AnchorPane.rightAnchor="41.056640625" AnchorPane.topAnchor="38.208984375">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Text>
+      <Label fx:id="Rue" layoutX="122.0" layoutY="265.0" text="Rue" />
+      <Label fx:id="mail" layoutX="109.0" layoutY="372.0" text="Mail" />
+      <Label fx:id="telephone" layoutX="133.0" layoutY="347.0" text="Téléphone" />
+      <Label layoutX="66.0" layoutY="265.0" prefHeight="17.0" prefWidth="49.0" text="Adresse:" />
+      <Label layoutX="61.0" layoutY="372.0" text="Mail:" />
+      <Label layoutX="61.0" layoutY="344.0" text="Téléphone:" />
+      <Label fx:id="batiment" layoutX="122.0" layoutY="282.0" text="Batiment" />
+      <Label fx:id="codepostal" layoutX="121.0" layoutY="299.0" text="CP" />
+      <Label fx:id="ville" layoutX="121.0" layoutY="316.0" text="Ville" />
+      <TableView fx:id="personTable" layoutX="287.0" layoutY="52.0" prefHeight="119.0" prefWidth="140.0">
+        <columns>
+          <TableColumn fx:id="Refcolumn" prefWidth="75.0" text="Ref" />
+          <TableColumn fx:id="RueColumn" prefWidth="75.0" text="Rue" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

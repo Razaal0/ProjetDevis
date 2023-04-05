@@ -1,9 +1,8 @@
-module sio.leo.Artizan {
+module sio.leo.artizan {
     requires javafx.controls;
     requires javafx.fxml;
-    requires java.base;
     requires java.sql;
-
-    opens sio.leo.Artizan to javafx.fxml;
-    exports sio.leo.Artizan;
+    requires java.base;
+    opens sio.leo.artizan to javafx.fxml;
+    exports sio.leo.artizan;
 }
