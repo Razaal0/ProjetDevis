@@ -31,15 +31,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         this.primaryStage = stage;
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(App.class.getResource("Accueil.fxml"));
-        SplitPane split = (SplitPane) loader.load();
-        AccueilController controller = loader.getController();
-        controller.setApp(this);
-        Scene scene = new Scene(split);
-        primaryStage.setTitle("Accueil");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        showAccueil();
     }
 
     public App() {
@@ -68,7 +60,17 @@ public class App extends Application {
             e.printStackTrace();
         }
     }
-
+ public void showAccueil()throws IOException {
+    FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(App.class.getResource("Accueil.fxml"));
+        SplitPane split = (SplitPane) loader.load();
+        AccueilController controller = loader.getController();
+        controller.setApp(this);
+        Scene scene = new Scene(split);
+        primaryStage.setTitle("Accueil");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+ }
     public ObservableList<Poste> getTabledata() {
         return tabledata;
     }
