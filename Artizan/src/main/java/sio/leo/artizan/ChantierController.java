@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
  */
 public class ChantierController implements Initializable {
 
+    private App app;
     /**
      * Initializes the controller class.
      */
@@ -23,4 +24,7 @@ public class ChantierController implements Initializable {
         // TODO
     }    
     
+    public void setApp(App app) {
+        this.app = app;
+    }
 }

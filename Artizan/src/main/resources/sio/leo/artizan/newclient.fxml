@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
@@ -13,9 +14,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sio.leo.artizan.NewclientController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sio.leo.artizan.NewclientController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffc105" height="494.0" layoutX="10.0" layoutY="96.0" stroke="WHITE" strokeType="INSIDE" width="881.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff8d05" height="494.0" layoutX="10.0" layoutY="96.0" stroke="WHITE" strokeType="INSIDE" width="881.0" />
       <TextField layoutX="53.0" layoutY="337.0" promptText="Nom" />
       <TextField layoutX="516.0" layoutY="157.0" prefHeight="26.0" prefWidth="269.0" promptText="Rue et numéro de rue" />
       <TextField layoutX="225.0" layoutY="337.0" promptText="Prenom" />
@@ -49,7 +50,7 @@
       <TextField layoutX="690.0" layoutY="255.0" promptText="Ville" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" focusTraversable="true" height="77.0" layoutX="11.0" layoutY="11.0" stroke="WHITE" width="882.0">
          <fill>
-            <LinearGradient endX="1.0" endY="1.0">
+            <LinearGradient endX="1.0" endY="0.2985781990521327">
                <stops>
                   <Stop>
                      <color>
@@ -58,7 +59,7 @@
                   </Stop>
                   <Stop offset="1.0">
                      <color>
-                        <Color red="1.0" green="0.6919052600860596" blue="0.019999999552965164" />
+                        <Color red="0.9078947305679321" green="0.5018640160560608" blue="0.037828948348760605" />
                      </color>
                   </Stop>
                </stops>
@@ -80,5 +81,11 @@
       </ButtonBar>
       <ToggleButton layoutX="47.0" layoutY="144.0" mnemonicParsing="false" selected="true" text="Particulier" />
       <ToggleButton layoutX="116.0" layoutY="144.0" mnemonicParsing="false" text="Professionnel" />
+      <ButtonBar layoutX="651.0" layoutY="525.0" prefHeight="40.0" prefWidth="200.0">
+        <buttons>
+          <Button fx:id="Annuler" mnemonicParsing="false" onAction="#Annuler"  style="-fx-background-color: black;" text="Annuler" textFill="WHITE" cancelButton="true" />
+            <Button fx:id="Enregistrer" mnemonicParsing="false" style="-fx-background-color: black;" text="Enregister" textFill="#d205fa" />
+        </buttons>
+      </ButtonBar>
    </children>
 </AnchorPane>

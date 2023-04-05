@@ -10,8 +10,10 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.stage.Stage;
 import sio.leo.artizan.App;
 import sio.leo.model.Client;
 import sio.leo.model.Poste;
@@ -33,7 +35,9 @@ public class ArticleController implements Initializable {
     private TableColumn<Poste, Integer> PostePUHTColonne;
     @FXML
     private TableColumn<Poste, Integer> PosteTotalColonne;
-
+    @FXML
+    private Button Retour;
+    
     private App app;
 
     public ArticleController() {
@@ -58,8 +62,13 @@ public class ArticleController implements Initializable {
         TablePoste.setItems(app.getTabledata());
     }
 
-    @FXML
-    private void handleRetour() throws IOException{
-        app.showAccueil();
-    }
+//    @FXML
+//    private void handleRetour() throws IOException{
+//        app.showAccueil();
+//    }
+     @FXML
+    private void handleRetour() {
+    Stage stage = (Stage) Retour.getScene().getWindow();
+    stage.close();
+}
 }

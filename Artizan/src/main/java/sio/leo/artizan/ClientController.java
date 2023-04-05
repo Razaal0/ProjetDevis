@@ -4,6 +4,7 @@
  */
 package sio.leo.artizan;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -12,6 +13,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import sio.leo.model.*;
 
 /**
@@ -47,7 +49,8 @@ public class ClientController {
     private TableColumn<Client, String> Refcolumn;
     @FXML
     private TableColumn<Client, String> RueColumn;
-
+    @FXML
+    private Button Retour;
     private App App;
     private DAO_Client cdao = new DAO_Client();
 
@@ -65,7 +68,7 @@ public class ClientController {
         this.App = mainApp;
         personTable.setItems(mainApp.getPersonData());
     }
-    
+
     private void showPersonDetails(Client client) {
         if (client != null) {
             mail.setText(client.getClient_cli_mail());
@@ -79,15 +82,21 @@ public class ClientController {
             batiment.setText("");
         }
     }
-    
-     @FXML
-    private void handleAjouterClient() throws SQLException{
+
+    @FXML
+    private void handleAjouterClient() throws SQLException {
         Client personneAajouter = new Client();
         boolean okClicked = App.showPersonEditDialog(personneAajouter);
-        
-        if(okClicked){
+
+        if (okClicked) {
             personTable.getItems().add(personneAajouter);
-            
+
         }
+    }
+
+    @FXML
+    private void handleRetour() {
+        Stage stage = (Stage) Retour.getScene().getWindow();
+        stage.close();
     }
 }

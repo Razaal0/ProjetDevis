@@ -31,7 +31,7 @@
                         <Insets left="20.0" top="20.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="Chantier" mnemonicParsing="false" prefHeight="25.0" prefWidth="140.0" style="-fx-background-color: #000000;" text="Chantier" textAlignment="JUSTIFY" textFill="WHITE">
+                  <Button fx:id="Chantier" mnemonicParsing="false" onAction="#handleChantier" prefHeight="25.0" prefWidth="140.0" style="-fx-background-color: #000000;" text="Chantier" textAlignment="JUSTIFY" textFill="WHITE">
                      <VBox.margin>
                         <Insets left="20.0" top="20.0" />
                      </VBox.margin>

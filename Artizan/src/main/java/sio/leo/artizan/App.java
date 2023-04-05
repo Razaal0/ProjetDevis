@@ -95,6 +95,22 @@ public class App extends Application {
         }
     }
 
+    public void showChantier() throws SQLException, IOException {
+        try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(App.class.getResource("Chantier.fxml"));
+                AnchorPane anchorpane = (AnchorPane) loader.load();
+                ChantierController controller = loader.getController();
+                controller.setApp(this);
+                Scene scene = new Scene(anchorpane);
+                primaryStage.setTitle("Chantier");
+                primaryStage.setScene(scene);
+                primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
     public boolean showPersonEditDialog(Client client) {
         try {
             // Charge le fichier fxml et crée un nouveau stage pour la boîte de dialogue*

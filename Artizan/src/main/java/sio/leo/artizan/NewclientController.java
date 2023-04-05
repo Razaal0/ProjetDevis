@@ -6,7 +6,11 @@ package sio.leo.artizan;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -15,12 +19,21 @@ import javafx.fxml.Initializable;
  */
 public class NewclientController implements Initializable {
 
+    @FXML
+    private Button Annuler;
+    private App App;
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    
-}
+    }   
+
+    @FXML
+    private void Annuler() {
+        Stage stage = (Stage) Annuler.getScene().getWindow();
+        stage.close();
+    }
+    }

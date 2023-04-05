@@ -11,7 +11,6 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import sio.leo.model.Client;
 
 /**
  * FXML Controller class
@@ -48,5 +47,10 @@ public class AccueilController implements Initializable {
     @FXML
     private void handlePoste() throws SQLException, IOException{
         App.showPoste();
+    }
+    
+    @FXML
+    private void handleChantier() throws SQLException, IOException{
+        App.showChantier();
     }
 }
