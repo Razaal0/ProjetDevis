@@ -14,8 +14,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import sio.leo.applidevi.modele.*;
-
-
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 /**
  * FXML Controller class
  *
@@ -44,7 +46,8 @@ private Label PUHT;
 private Label TxTVA;
 @FXML
 private Label TTC;
- private void showPersonDetails(Devis ledevis){
+
+private void showPersonDetails(Devis ledevis){
             if(ledevis!=null){
                 PosteArticle.setText(ledevis.getPosteArticleProperty());
                 Qté.setText(ledevis.getQteProperty().toString());
@@ -52,6 +55,7 @@ private Label TTC;
                 PUHT.setText(ledevis.getPUHTProperty().toString());
                 TxTVA.setText(ledevis.getTxTVAProperty().toString());
                 TTC.setText(ledevis.getTTCProperty().toString());
+                DateDevis.setText(ledevis.getDateProperty().toString());//pour Jayson
             }else{
                 PosteArticle.setText("");
                 Qté.setText("");
@@ -65,10 +69,25 @@ private Label TTC;
      * Initializes the controller class.
      */
 
-        // TODO
-        
+        // 
+            }
+}
+  
+             public void initialize() {
+        //Obtenir la date actuelle
+        LocalDate date = LocalDate.now();
+        LocalDate date2 = LocalDate.now();
+        date2 = date2.plusDays(30);
+
+        //Formater la date
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String formattedDate = date.format(formatter);
+        String formattedDate2 = date2.format(formatter);
+
+        //Afficher la date dans l'étiquette
+        DateDevis.setText( formattedDate);
+        DateDevis30.setText( formattedDate2);
+
          
     } 
- }
-
 }
