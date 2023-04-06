@@ -1,0 +1,15 @@
+CREATE PROCEDURE ajouter_devis (
+    IN dev_numero INT,
+    IN dev_date DATE,
+    IN pos_libelle VARCHAR(255),
+    IN pos_puht DECIMAL(10,2),
+    IN quantite INT
+)
+BEGIN
+    DECLARE idP INT;
+    SELECT IFNULL(MAX(idP), 0) + 1 INTO idP FROM Poste;
+
+    INSERT INTO Devis (dev_numero, dev_date) VALUES (??, ??);
+    INSERT INTO Poste (idP, pos_libelle, pos_puht) VALUES (??, ??, ??);
+    INSERT INTO Quantite (idP, quantite) VALUES (??, ??);
+END;
