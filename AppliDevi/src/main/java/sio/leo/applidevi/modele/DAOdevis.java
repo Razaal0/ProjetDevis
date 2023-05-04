@@ -25,9 +25,9 @@ public class DAOdevis {
      * @return cnxGsb
      */
     public static Connection getConnection(){
-        String url ="jdbc:mysql://localhost:3307/devistest";
-        String loginBd = "root";
-        String passwd="";
+        String url ="jdbc:mysql://readergen.synology.me:3307/ProjetDevis";
+        String loginBd = "AdminDevis";
+        String passwd="bB4/kti-rA";
         try {
             cnx = (Connection) DriverManager.getConnection(url, loginBd, passwd);
             System.out.println("Connexion réussi");

@@ -4,6 +4,7 @@
  */
 package sio.leo.applidevi.modele;
 
+import java.util.Date;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -17,6 +18,7 @@ public class Devis {
     private int PUHT;
     private int TxTVA;
     private int TTC;
+    private Date DateDevis;
     private IntegerProperty idProperty;
     private StringProperty PosteArticleProperty;
     private IntegerProperty QteProperty;
@@ -24,7 +26,8 @@ public class Devis {
     private IntegerProperty PUHTProperty;
     private IntegerProperty TxTVAProperty;
     private IntegerProperty TTCProperty;
-    public Devis(int id, String PosteArticle, int Qté, int unité, int PUHT, int TxTVA, int TTC){
+    private Date DateDevisProperty;
+    public Devis(int id, String PosteArticle, int Qté, int unité, int PUHT, int TxTVA, int TTC, Date DateDevis){
         this.id=id;
         this.PosteArticle=PosteArticle;
         this.Qte=Qte;
@@ -32,6 +35,7 @@ public class Devis {
         this.PUHT=PUHT;
         this.TxTVA=TxTVA;
         this.TTC=TTC;
+        this.DateDevis=DateDevis;
     }
 
     public int getId() {
@@ -117,7 +121,17 @@ public class Devis {
         return TTCProperty;
     }
 
+////     public Date getDate() {
+////         return DateDevisProperty.get();
+////    }
+////
+////    public void setDate(Date DateDevisProperty) {
+////        this.DateDevisProperty.set(DateDevisProperty);
+////    }
 
+    public Date getDateProperty(){
+        return DateDevisProperty;
+    }
 
   
      public Devis (Integer idProperty, String PosteArticleProperty, Integer QtéProperty, Integer unitéProperty, Integer PUHTProperty, Integer TxTVAProperty, Integer TTCProperty){
