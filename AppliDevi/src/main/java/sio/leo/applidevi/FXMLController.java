@@ -55,7 +55,7 @@ private void showPersonDetails(Devis ledevis){
                 PUHT.setText(ledevis.getPUHTProperty().toString());
                 TxTVA.setText(ledevis.getTxTVAProperty().toString());
                 TTC.setText(ledevis.getTTCProperty().toString());
-                DateDevis.setText(ledevis.getDateProperty().toString());//pour Jayson
+                DateDevis.setText(ledevis.getDateProperty().toString());
             }else{
                 PosteArticle.setText("");
                 Qté.setText("");
